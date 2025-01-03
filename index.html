@@ -3,9 +3,44 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
         <title>Rock Paper Scissors</title>
-        <script src="index.js"></script>
     </head>
     <body>
+        <div class="header">
+            ROCK · PAPER · SCISSORS!
+        </div>
+        <main class="container">
+            <div class="score-display">
+                <p class="user-text">You</p>
+                <div class="running-score">
+                    <p id="user-score">0</p>
+                    <p class="seperate">:</p>
+                    <p id="computer-score">0</p>
+                </div>
+                <p class="computer-text">Computer</p>
+            </div>
+
+            <p id="instruction">Choose an option</p>
+            <div class="options">
+                <button class="round-btn" id="Rock">🪨</button>
+                <button class="round-btn" id="Paper">🧻</button>
+                <button class="round-btn" id="Scissors">✂️</button>
+            </div>
+
+            <div id="results">
+            </div>
+            <button class="visible" id="reset-btn">Try Again?</button>
+        </main>
+        <footer>
+            <p>© 2025 GCarlott.</p>
+            <a href="https://github.com/Gritnb/rock-paper-scissors">
+            <img src="images/github-mark.svg"
+                 alt="Github Logo"
+                 width="25px"
+                 class="git-logo"
+                 target="_blank"></a>
+        </footer>
+        <script src="index.js"></script>
     </body>
 </html>
