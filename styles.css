@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #00203e;
+    font-family: 'Rubik Vinyl', 'sans-serif';
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    color: white;
+    background: linear-gradient(180deg, rgb(0, 17, 54) 50%, #00203e);
+    font-size: 72px;
+    text-align: center;
+    padding: 10px;
+}
+
+.score-display {
+    border: 2px solid rgb(210, 210, 210);
+    box-shadow: 1px 1px 20px gray;
+    border-radius: 30px;
+    color: white;
+    font-size: 36px;
+    width: 50%;
+    margin: 80px auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px
+}
+
+.running-score {
+    display: flex;
+    align-items: center;
+}
+
+.container,
+.user-text,
+.computer-text,
+#user-score,
+#computer-score,
+.seperate {
+    flex: 1;
+}
+
+.seperate {
+    padding: 10px;
+}
+
+.computer-text {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.user-text {
+    text-align: left;
+    padding-left: 30px;
+}
+
+#instruction {
+    color: rgb(207, 207, 207);
+    font-size: 56px;
+    text-align: center;
+}
+
+.options {
+    border-radius: 30px;
+    width: 60%;
+    margin: 50px auto 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    padding: 40px;
+}
+
+.options > button {
+    font-size: 72px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.options > button:hover {
+    transform: translateY(5px);
+    text-shadow: 1px 1px 20px rgb(164, 164, 164);
+}
+
+.options > button:active,
+.git-logo:hover {
+    transform: scale(0.97);
+    text-shadow: 1px 1px 20px rgb(213, 213, 213);
+}
+
+#results {
+    color: white;
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+footer {
+    background: linear-gradient(180deg,#00203e, rgb(0, 17, 54) 90%);
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 100;
+    color: white;
+    font-size: 20px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.visible {
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    color: lightgreen;
+    margin: 0 auto;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.visible:hover {
+    transform: scale(1.1);
+    text-shadow: 1px 1px 5px rgb(179, 179, 179);
+}
+
+.git-logo {
+    filter: invert(90%) sepia(83%) saturate(0%) hue-rotate(305deg) brightness(113%) contrast(100%);
+}
