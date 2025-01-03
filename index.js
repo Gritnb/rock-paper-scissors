@@ -1,55 +1,99 @@
 const choicePool = ["Rock", "Paper", "Scissors"];
-NUMBER_OF_ROUNDS = 5;
+TIE_COLOR = "coral";
+LOSE_COLOR = "crimson";
+WIN_COLOR = "lightgreen";
+MAX_POINTS = 5;
 
-function capitalizer(str) {
-  let letter = str.slice(0, 1).toUpperCase();
-  let rest = str.slice(1).toLowerCase();
-  return letter.concat(rest);
-}
+let humanScore = 0;
+let computerScore = 0;
+
+const buttons = document.querySelectorAll(".round-btn");
+const userText = document.querySelector("#user-score");
+const computerText = document.querySelector("#computer-score");
+
+const resetButton = document.querySelector("#reset-btn");
+resetButton.style.display = "none";
+resetButton.addEventListener("click", () => {
+    resetGame();
+});
+
+const resultsContainer = document.querySelector("#results");
+const options = document.querySelector(".options");
+const instruction = document.querySelector("#instruction");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const playerSelection = button.id;
+        playRound(getComputerChoice(), playerSelection);
+    });
+});
+
 function getComputerChoice() {
-  return choicePool[Math.floor(Math.random() * 3)];
-}
+    return choicePool[Math.floor(Math.random() * 3)];
+};
 
-function getHumanChoice() {
-  let input = prompt("What is your choice?").toLowerCase();
-  return capitalizer(input);
-}
+function playRound(computer, human) {
 
-function playGame() {
-  let computerScore = 0;
-  let humanScore = 0;
-  let round = 0;
-
-  function playRound(computer, human) {
     if (computer === human) {
-      console.log(`It's a tie!`);
-    } else if (computer === "Paper" && human === "Rock") {
-      console.log(`You lose! ${computer} beats ${human}`);
-      computerScore++;
-    } else if (computer === "Scissors" && human === "Paper") {
-      console.log(`You lose! ${computer} beats ${human}`);
-      computerScore++;
-    } else if (computer === "Rock" && human === "Scissors") {
-      console.log(`You lose! ${computer} beats ${human}`);
-      computerScore++;
+        resultsContainer.textContent = `It's a tie!`;
+        resultsContainer.setAttribute("style", `color: ${TIE_COLOR};`);
+    
+    } else if (
+        (human === "Rock" && computer === "Scissors") ||
+        (human === "Paper" && computer === "Rock") ||
+        (human === "Scissors" && computer === "Paper")) {
+    
+        resultsContainer.textContent = `You Win! ${human} beats ${computer}`;
+        resultsContainer.setAttribute("style", `color: ${WIN_COLOR};`);
+        humanScore++;
+        userText.textContent = humanScore;
+    
+        if (humanScore === MAX_POINTS) {
+
+            declareWinner();
+        };
+
     } else {
-      console.log(`You Win! ${human} beats ${computer}`);
-      humanScore++;
-    }
-  }
 
-  do {
-    playRound(getComputerChoice(), getHumanChoice());
-    round++;
-  } while (round < NUMBER_OF_ROUNDS);
+        resultsContainer.textContent = `You lose! ${computer} beats ${human}.`;
+        resultsContainer.setAttribute("style", `color: ${LOSE_COLOR};`);
+        computerScore++;
+        computerText.textContent = computerScore;
 
-  if (humanScore > computerScore) {
-    console.log(`You won the game!`);
-  } else if (computerScore > humanScore) {
-    console.log(`Computer wins this time!`);
-  } else {
-    console.log(`Game's a tie!`);
-  }
-}
+        if (computerScore === MAX_POINTS) {
 
-playGame();
+            declareWinner();
+        };
+    };
+};
+
+function declareWinner() {
+    if (computerScore > humanScore) {
+
+        resultsContainer.textContent =`You lost! Try again?`;
+        resultsContainer.setAttribute("style", `color: ${LOSE_COLOR}; font-size: 40px`);
+
+    } else if (humanScore > computerScore) {
+
+        resultsContainer.textContent =`You win! Go for another round?`;
+        resultsContainer.setAttribute("style", `color: ${WIN_COLOR}; font-size: 52px`);
+
+    };
+
+    resetButton.style.display = "block";
+    instruction.style.display = "none";
+    options.style.display = "none";
+};
+
+function resetGame() {
+
+    humanScore = 0;
+    userText.textContent = `${humanScore}`;
+    computerScore = 0;
+    computerText.textContent = `${computerScore}`;
+
+    resultsContainer.textContent = ``;
+    resetButton.style.display = "none";
+    instruction.style.display = "block";
+    options.style.display = "flex";
+};
